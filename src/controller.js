@@ -74,6 +74,16 @@ function Controller(ship) {
     }, 20);
     },
 
+    dock() {
+      const ship = this.ship;
+    const currentPortIndex = ship.itinerary.ports.indexOf(ship.currentPort);
+    const nextPortIndex = currentPortIndex + 1;
+    const nextPortElement = document.querySelector(`[data-port-index='${nextPortIndex}']`);
+
+    },
+
+
+
   renderMessage(message) {
     const messageElement = document.createElement("div");
 
