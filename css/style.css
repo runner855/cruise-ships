@@ -11,8 +11,8 @@ body {
 }
 
 #viewport {
-  width: 640px;
-  height: 256px;
+  width: 1040px;
+  height: 266px;
   position: relative;
   overflow-x: auto;
   background-image: url("../images/water0.png");

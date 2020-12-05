@@ -22,12 +22,12 @@ function Controller(ship) {
     },
 
     renderPorts(ports) {
-      const portsElement = document.querySelector('#ports');
-      portsElement.style.width = '0px';
+      const portsElement = document.querySelector("#ports");
+      portsElement.style.width = "0px";
 
       ports.forEach((port, index) => {
-        const newPortElement = document.createElement('div');
-        newPortElement.className = 'port';
+        const newPortElement = document.createElement("div");
+        newPortElement.className = "port";
         newPortElement.dataset.portName = port.name;
         newPortElement.dataset.portIndex = index;
         portsElement.appendChild(newPortElement);
@@ -55,11 +55,12 @@ function Controller(ship) {
     const nextPortElement = document.querySelector(`[data-port-index='${nextPortIndex}']`);
 
     if (!nextPortElement) {
-      return this.renderMessage(`Last Stop ${ship.currentPort.name}`);
+      return this.renderMessage(`Arrived in ${ship.currentPort.name}!`);
       // alert("End of the line!");
     }
     this.renderMessage(`Now departing ${ship.currentPort.name}`);
-    const shipElement = document.querySelector('#ship');
+    
+    const shipElement = document.querySelector("#ship");
 
     const sailInterval = setInterval(() => {
       const shipLeft = parseInt(shipElement.style.left, 10);
@@ -74,11 +75,13 @@ function Controller(ship) {
     },
 
   renderMessage(message) {
-    const messageElement = document.createElement('div');
+    const messageElement = document.createElement("div");
+
     messageElement.id = "message";
     messageElement.innerHTML = message;
 
-    const viewport = document.querySelector('#viewport');
+
+    const viewport = document.querySelector("#viewport");
     viewport.appendChild(messageElement);
 
     setTimeout(() => {
@@ -90,7 +93,7 @@ function Controller(ship) {
 
  
 
-  if (typeof module !== 'undefined' && module.exports) {
+  if (typeof module !== "undefined" && module.exports) {
     module.exports = Controller;
   } else {
     window.Controller = Controller;
