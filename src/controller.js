@@ -1,20 +1,19 @@
 (function exportController() {
-function Controller(ship) {
-  this.ship = ship;
-  this.initialiseSea();
+  function Controller(ship) {
+    this.ship = ship;
+    this.initialiseSea();
 
-  document.querySelector("#sailbutton").addEventListener("click", () => {
-    this.setSail();
-  });
-
-}
+    document.querySelector("#sailbutton").addEventListener("click", () => {
+      this.setSail();
+    });
+  }
   Controller.prototype = {
     initialiseSea() {
-      const backgrounds = ['./images/water0.png', './images/water1.png'];
+      const backgrounds = ["./images/water0.png", "./images/water1.png"];
 
       let backgroundIndex = 0;
       window.setInterval(() => {
-        document.querySelector('#viewport').style.backgroundImage = `url('${
+        document.querySelector("#viewport").style.backgroundImage = `url('${
           backgrounds[backgroundIndex % backgrounds.length]
         }')`;
         backgroundIndex += 1;
@@ -35,73 +34,62 @@ function Controller(ship) {
         const portsElementWidth = parseInt(portsElement.style.width, 10);
         portsElement.style.width = `${portsElementWidth + 256}px`;
       });
-  },
-
-  renderShip() {
-    const ship = this.ship;
-  const shipPortIndex = ship.itinerary.ports.indexOf(ship.currentPort);
-  const portElement = document.querySelector(`[data-port-index='${shipPortIndex}']`);
-
-  const shipElement = document.querySelector("#ship");
-  shipElement.style.top = `${portElement.offsetTop + 32}px`;
-  shipElement.style.left = `${portElement.offsetLeft - 32}px`;
-
-  },
-
-  setSail() {
-    const ship = this.ship;
-    const currentPortIndex = ship.itinerary.ports.indexOf(ship.currentPort);
-    const nextPortIndex = currentPortIndex + 1;
-    const nextPortElement = document.querySelector(`[data-port-index='${nextPortIndex}']`);
-
-    if (!nextPortElement) {
-      return this.renderMessage(`Arrived in ${ship.currentPort.name}!`);
-      // alert("End of the line!");
-    }
-    this.renderMessage(`Now departing ${ship.currentPort.name}`);
-    
-    const shipElement = document.querySelector("#ship");
-
-    const sailInterval = setInterval(() => {
-      const shipLeft = parseInt(shipElement.style.left, 10);
-      if (shipLeft === (nextPortElement.offsetLeft -32)) {
-        ship.setSail();
-        ship.dock();
-        clearInterval(sailInterval);
-      }
-
-      shipElement.style.left = `${shipLeft + 1}px`;
-    }, 20);
     },
 
-    dock() {
+    renderShip() {
       const ship = this.ship;
-    const currentPortIndex = ship.itinerary.ports.indexOf(ship.currentPort);
-    const nextPortIndex = currentPortIndex + 1;
-    const nextPortElement = document.querySelector(`[data-port-index='${nextPortIndex}']`);
+      const shipPortIndex = ship.itinerary.ports.indexOf(ship.currentPort);
+      const portElement = document.querySelector(
+        `[data-port-index='${shipPortIndex}']`
+      );
 
+      const shipElement = document.querySelector("#ship");
+      shipElement.style.top = `${portElement.offsetTop + 32}px`;
+      shipElement.style.left = `${portElement.offsetLeft - 32}px`;
     },
 
+    setSail() {
+      const ship = this.ship;
+      const currentPortIndex = ship.itinerary.ports.indexOf(ship.currentPort);
+      const nextPortIndex = currentPortIndex + 1;
+      const nextPortElement = document.querySelector(
+        `[data-port-index='${nextPortIndex}']`
+      );
 
+      if (!nextPortElement) {
+        return this.renderMessage(`Arrived in ${ship.currentPort.name}!`);
+        // alert("End of the line!");
+      }
+      this.renderMessage(`Now departing ${ship.currentPort.name}`);
 
-  renderMessage(message) {
-    const messageElement = document.createElement("div");
+      const shipElement = document.querySelector("#ship");
 
-    messageElement.id = "message";
-    messageElement.innerHTML = message;
+      const sailInterval = setInterval(() => {
+        const shipLeft = parseInt(shipElement.style.left, 10);
+        if (shipLeft === nextPortElement.offsetLeft - 32) {
+          ship.setSail();
+          ship.dock();
+          clearInterval(sailInterval);
+        }
 
+        shipElement.style.left = `${shipLeft + 1}px`;
+      }, 20);
+    },
 
-    const viewport = document.querySelector("#viewport");
-    viewport.appendChild(messageElement);
+    renderMessage(message) {
+      const messageElement = document.createElement("div");
 
-    setTimeout(() => {
-      viewport.removeChild(messageElement);
-    }, 2000);
-  }
-};
+      messageElement.id = "message";
+      messageElement.innerHTML = message;
 
+      const viewport = document.querySelector("#viewport");
+      viewport.appendChild(messageElement);
 
- 
+      setTimeout(() => {
+        viewport.removeChild(messageElement);
+      }, 2000);
+    }
+  };
 
   if (typeof module !== "undefined" && module.exports) {
     module.exports = Controller;

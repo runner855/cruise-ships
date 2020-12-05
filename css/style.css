@@ -28,7 +28,6 @@ body {
   width: 64px;
   height: 32px;
   background-image: url("../images/port.png");
-  
 }
 
 #ship {
@@ -36,13 +35,11 @@ body {
   width: 128px;
   position: absolute;
   background-image: url("../images/ship.png");
-
-
 }
 
 #sailbutton {
   border: 0;
-  background-color: #FB3640;
+  background-color: #fb3640;
   border-bottom: 4px solid #d8040f;
   color: white;
   font-family: inherit;
@@ -51,22 +48,15 @@ body {
   bottom: 0;
   left: 0;
   width: 100%;
-  font-family:  'Press Start 2P', cursive;
-
+  font-family: "Press Start 2P", cursive;
 }
 
 #message {
   padding: 16px;
-  font-family: 'Press Start 2P', cursive;
+  font-family: "Press Start 2P", cursive;
   position: absolute;
   width: 100%;
   bottom: 0;
   border-top: 3px solid black;
   background-color: white;
-
-
 }
-
-
-
-

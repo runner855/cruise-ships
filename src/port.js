@@ -1,29 +1,20 @@
 (function exportPort() {
-function Port(name) {
+  function Port(name) {
     this.name = name;
     this.ships = [];
-    
-};
-Port.prototype = {
-    addShip (ship) {
-    this.ships.push(ship);
+  }
+  Port.prototype = {
+    addShip(ship) {
+      this.ships.push(ship);
     },
-    removeShip () {
-    this.ships.pop();
-    
-        }
-};
+    removeShip() {
+      this.ships.pop();
+    }
+  };
 
-if(typeof module !== 'undefined' && module.exports) {
+  if (typeof module !== "undefined" && module.exports) {
     module.exports = Port;
-} else {
+  } else {
     window.Port = Port;
-}
-}());
-
-
-
-
-
-
-
+  }
+})();

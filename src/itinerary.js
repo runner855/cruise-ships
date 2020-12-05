@@ -1,12 +1,11 @@
 (function exportItinerary() {
-    function Itinerary(ports) {
+  function Itinerary(ports) {
     this.ports = ports;
-}
+  }
 
-
-if(typeof module !== 'undefined' && module.exports) {
+  if (typeof module !== "undefined" && module.exports) {
     module.exports = Itinerary;
-} else {
+  } else {
     window.Itinerary = Itinerary;
-}
-}());
+  }
+})();
