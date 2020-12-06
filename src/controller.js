@@ -63,8 +63,8 @@
         // alert("End of the line!");
       }
       this.renderMessage(`Now departing: ${ship.currentPort.name}`);
-      this.displayMsg(`Current Port: ${ship.currentPort.name}`,0);
-      this.displayMsg(`Next Port: ${nextPort.name}`,1);
+      this.displayMsg(`Current Port: ${ship.currentPort.name}`, 0);
+      this.displayMsg(`Next Port: ${nextPort.name}`, 1);
 
       const shipElement = document.querySelector("#ship");
 
@@ -75,7 +75,6 @@
           ship.dock();
           clearInterval(sailInterval);
         }
-
 
         shipElement.style.left = `${shipLeft + 1}px`;
       }, 20);
@@ -95,14 +94,14 @@
       }, 2000);
     },
 
-    displayMsg(displayPorts,flag) {
-
+    displayMsg(displayPorts, flag) {
       const msgPorts = document.createElement("div");
 
       msgPorts.id = "displayPorts";
       msgPorts.innerHTML = displayPorts;
-      if (flag == 1)
-        { msgPorts.style.top="20px"; }
+      if (flag == 1) {
+        msgPorts.style.top = "20px";
+      }
 
       const viewport = document.querySelector("body");
       viewport.appendChild(msgPorts);
@@ -110,11 +109,8 @@
       setTimeout(() => {
         viewport.removeChild(msgPorts);
       }, 2000);
-      
-  },
-
-};
-
+    }
+  };
 
   if (typeof module !== "undefined" && module.exports) {
     module.exports = Controller;
