@@ -5,6 +5,7 @@
 
     document.querySelector("#sailbutton").addEventListener("click", () => {
       this.setSail();
+      this.displaymsg();
     });
   }
   Controller.prototype = {
@@ -52,6 +53,7 @@
       const ship = this.ship;
       const currentPortIndex = ship.itinerary.ports.indexOf(ship.currentPort);
       const nextPortIndex = currentPortIndex + 1;
+      const nextPort = ship.itinerary.ports[nextPortIndex];
       const nextPortElement = document.querySelector(
         `[data-port-index='${nextPortIndex}']`
       );
@@ -60,7 +62,9 @@
         return this.renderMessage(`Arrived in ${ship.currentPort.name}!`);
         // alert("End of the line!");
       }
-      this.renderMessage(`Now departing ${ship.currentPort.name}`);
+      this.renderMessage(`Now departing: ${ship.currentPort.name}`);
+      this.displayMsg(`Current Port: ${ship.currentPort.name}`,0);
+      this.displayMsg(`Next Port: ${nextPort.name}`,1);
 
       const shipElement = document.querySelector("#ship");
 
@@ -71,6 +75,7 @@
           ship.dock();
           clearInterval(sailInterval);
         }
+
 
         shipElement.style.left = `${shipLeft + 1}px`;
       }, 20);
@@ -88,8 +93,28 @@
       setTimeout(() => {
         viewport.removeChild(messageElement);
       }, 2000);
-    }
-  };
+    },
+
+    displayMsg(displayPorts,flag) {
+
+      const msgPorts = document.createElement("div");
+
+      msgPorts.id = "displayPorts";
+      msgPorts.innerHTML = displayPorts;
+      if (flag == 1)
+        { msgPorts.style.top="20px"; }
+
+      const viewport = document.querySelector("body");
+      viewport.appendChild(msgPorts);
+
+      setTimeout(() => {
+        viewport.removeChild(msgPorts);
+      }, 2000);
+      
+  },
+
+};
+
 
   if (typeof module !== "undefined" && module.exports) {
     module.exports = Controller;
