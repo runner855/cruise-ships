@@ -2,6 +2,8 @@
 
 Have fun sailing your ship trough different ports, built with Object Oriented Programming.
 
+<img width="1242" alt="Screenshot 2020-12-28 at 10 24 28" src="https://user-images.githubusercontent.com/64982185/103207757-069ce680-48f7-11eb-96a8-add02ed85a0e.png">
+
 # FEATURES
 
 Our Ship will be able to sail trough different ports ,dock , you will be able to see which one is your current port and which one will be your next one.
